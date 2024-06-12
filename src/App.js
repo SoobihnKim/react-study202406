@@ -4,6 +4,8 @@ import React from "react";
 
 import './components/expenses/ExpenseItem.css'
 import ExpenseItem from "./components/expenses/ExpenseItem";
+import ExpenseList from "./components/expenses/ExppenseList";
+import Greet from "./components/Greet";
 
 const App = () => {
 
@@ -12,7 +14,7 @@ const App = () => {
         {
             title: '치킨먹음',
             price: 30000,
-            date: new Date(2024, 6 - 1,3)
+            date: new Date(2024, 6 - 1, 3)
         },
         {
             title: '족발먹음',
@@ -28,22 +30,7 @@ const App = () => {
 
     return (
         <>
-            {/*/*문자열만 {} 생략 가능 다른 타입은 {} 써야함 */}
-            <ExpenseItem
-                title={expenses[0].title}
-                price={expenses[0].price}
-                date={expenses[0].date}
-            />
-            <ExpenseItem
-                title={expenses[1].title}
-                price={expenses[1].price}
-                date={expenses[1].date}
-            />
-            <ExpenseItem
-                title={expenses[2].title}
-                price={expenses[2].price}
-                date={expenses[2].date}
-            />
+            <ExpenseList expenses={expenses}/>
         </>
     );
 }
