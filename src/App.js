@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import React from "react";
 
-import './components/expenses/ExpenseItem.css'
-import ExpenseItem from "./components/expenses/ExpenseItem";
+import React from "react";
+import './components/expenses/ExpenseItem.css';
 import ExpenseList from "./components/expenses/ExppenseList";
-import Greet from "./components/Greet";
+
 
 const App = () => {
 
