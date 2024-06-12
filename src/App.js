@@ -21,27 +21,13 @@ const App = () => {
 
     return (
         <>
-            <ExpenseItem />
-            <ExpenseItem />
+            {/*/*문자열만 {} 생략 가능 다른 타입은 {} 써야함 */}
+            <ExpenseItem title="치킨" price={30000} date={new Date(2024, 6, 3)} />
+            <ExpenseItem title="족발" price={40000} date={new Date(2024, 6, 5)} />
+            <ExpenseItem title="헬스장 등록" price={300000} date={new Date(2024, 6, 10)} />
 
         </>
     );
 }
 
 export default App;
-
-/*
-// rsc 단축키로 이렇게 완성
-
-import React from 'react';
-
-const Foo = () => {
-    return (
-        <div>
-
-        </div>
-    );
-};
-
-export default Foo;
- */
