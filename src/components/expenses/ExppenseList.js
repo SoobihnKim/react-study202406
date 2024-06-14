@@ -13,22 +13,6 @@ const ExpenseList = ({expenses}) => {
         setFilteredYear(filteredYear);
     };
 
-    // App.js에서 받은 expenses 배열을 <ExpenseItem> 배열로 변환하는 함수
-    // const convertToComponentArray = () => {
-    //
-    //     const mappedArray = expenses.map(ex => <ExpenseItem title={ex.title} price={ex.price} date={ex.date} />);
-    //
-    //     return mappedArray;
-
-
-    // const newArray = [];
-    // for (const ex of expenses) {
-    //     const tag = <ExpenseItem title={ex.title} price={ex.price} date={ex.date} />;
-    //     newArray.push(tag);
-    // }
-    // return newArray;
-    // };
-
     return (
         <div className="expenses">
 
@@ -43,22 +27,6 @@ const ExpenseList = ({expenses}) => {
                         title={ex.title}
                         price={ex.price}
                         date={ex.date}/>))}
-
-            {/*<ExpenseItem*/}
-            {/*    title={expenses[0].title}*/}
-            {/*    price={expenses[0].price}*/}
-            {/*    date={expenses[0].date}*/}
-            {/*/>*/}
-            {/*<ExpenseItem*/}
-            {/*    title={expenses[1].title}*/}
-            {/*    price={expenses[1].price}*/}
-            {/*    date={expenses[1].date}*/}
-            {/*/>*/}
-            {/*<ExpenseItem*/}
-            {/*    title={expenses[2].title}*/}
-            {/*    price={expenses[2].price}*/}
-            {/*    date={expenses[2].date}*/}
-            {/*/>*/}
 
         </div>
     );

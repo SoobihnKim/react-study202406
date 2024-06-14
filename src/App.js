@@ -4,8 +4,6 @@ import './components/expenses/ExpenseItem.css';
 import ExpenseList from "./components/expenses/ExppenseList";
 import Counter from "./components/practice/Counter";
 import NewExpense from "./components/new-expense/NewExpense";
-// import CheckBoxStyle from "./components/practice/CheckBoxStyle";
-
 
 const App = () => {
 
@@ -38,19 +36,31 @@ const App = () => {
         },
     ];
 
+    // 배열을 상태변수로 관리
+    const [expenseList, setExpenseList] = useState(expenses);
+
     // ExpenseForm에게 내려보낼 함수
     const onAddExpense = (userInput) => {
         console.log('App.js가 내려보낸 함수 호출!');
-        console.log(userInput);
-        expenses.push(userInput);
-        console.log(expenses);
+        // console.log(userInput);
+
+        // expenseList.push(userInput);
+        // 렌더링을 위해 새로운 배열 필요. 배열 복사하면서 푸시
+        // const newExpenseList = [...expenseList, userInput];
+        setExpenseList([...expenseList, userInput]);
+
+        // console.log(expenseList);
     };
+
+    /*
+    한줄로 정리
+     const onAddExpense = (userInput) => setExpenseList([...expenseList, userInput]);
+     */
 
     return (
         <>
-            {/*<CheckBoxStyle />*/}
             <NewExpense onSave={onAddExpense}/>
-            <ExpenseList expenses={expenses}/>
+            <ExpenseList expenses={expenseList}/>
         </>
     );
 }

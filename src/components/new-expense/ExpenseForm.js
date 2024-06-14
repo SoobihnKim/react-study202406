@@ -3,11 +3,6 @@ import './ExpenseForm.css';
 
 const ExpenseForm = ({onAdd}) => {
 
-    // 입력 칸에 있는 3개의 값을 각각의 상태값으로 관리
-    // const [title, setTitle] = useState('');
-    // const [price, setPrice] = useState(0);
-    // const [date, setDate] = useState(null);
-
     // 입력 칸에 있는 3개의 값을 하나의 상태값으로 관리
     const [userInput, setUserInput] = useState({
         title: '',
@@ -66,17 +61,13 @@ const ExpenseForm = ({onAdd}) => {
         e.preventDefault();
         // console.log('폼이 전송됨');
 
-        // 지출 내역 객체를 생성
-        // const newExpense = {
-        //     title,
-        //     price,
-        //     date
-        // };
-
         console.log(userInput);
 
         // App.js에게 받은 함수를 호출(상향식 데이터 전달)
-        onAdd(userInput);
+        onAdd({
+            ...userInput,
+            date: new Date(userInput.date)
+        });
 
         // 추가하면 form input 비우기
         setUserInput({
@@ -86,7 +77,6 @@ const ExpenseForm = ({onAdd}) => {
         });
 
     };
-
 
     return (
         <form onSubmit={submitHandler}>
