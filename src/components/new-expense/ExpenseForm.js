@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({onAdd}) => {
+const ExpenseForm = ({onAdd, onCalcel}) => {
 
     // 입력 칸에 있는 3개의 값을 하나의 상태값으로 관리
     const [userInput, setUserInput] = useState({
@@ -26,14 +26,12 @@ const ExpenseForm = ({onAdd}) => {
         // 객체나 배열 상태로 관리되는 상태값은
         // 상태 변경 시 새로운 객체나 배열을 setter에 전달해야함
         // 새로운 객체를 만들어줘야함
-
         setUserInput(prevUserInput => ({
             ...prevUserInput,
             title: e.target.value
             // price: userInput.price ,
             // date: userInput.date
         }));
-
     };
 
     // 가격이 입력되었을 때 발생하는 이벤트 핸들러
@@ -53,7 +51,6 @@ const ExpenseForm = ({onAdd}) => {
             date: e.target.value
         });
     };
-
 
     // 폼 전송 이벤트 핸들러
     const submitHandler = e => {
@@ -107,6 +104,7 @@ const ExpenseForm = ({onAdd}) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="button" onClick={onCalcel}>Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>

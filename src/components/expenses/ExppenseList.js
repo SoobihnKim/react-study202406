@@ -17,27 +17,27 @@ const ExpenseList = ({expenses}) => {
     // 연도로 필터링한 배열
     const filteredExpenses = expenses.filter(ex => ex.date.getFullYear().toString() === filteredYear);
 
-    // 지출 데이터가 있을 때 보여줄 태그
-    const expenseContent = filteredExpenses
-                           .map(({ title, price, date }) => (
-                             <ExpenseItem key={Math.random().toString()}
-                                          title={title}
-                                          price={price}
-                                          date={date}
-                                          />
-                           ));
-
     // 지출 데이터가 없을 때 보여줄 태그
-    const noContent = <p>지출 항목이 없습니다.</p>;
+    let content = <p>지출 항목이 없습니다.</p>;
+
+    // 지출데이터가 있을 때 보여줄 태그
+    if (filteredExpenses.length > 0) {
+        content = filteredExpenses.map(({ title, price, date }) => (
+            <ExpenseItem
+                key={Math.random().toString()}
+                title={title}
+                price={price}
+                date={date}
+            />
+        ));
+    }
 
     return (
         <div className="expenses">
-
-            <ExpenseFilter onChangeFilter={onFilterChange}/>
-
-            {filteredExpenses.length > 0 ? expenseContent : noContent}
-
+            <ExpenseFilter onChangeFilter={onFilterChange} />
+            {content}
         </div>
+
     );
 };
 
