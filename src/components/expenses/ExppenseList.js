@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ExpenseItem from "./ExpenseItem";
 import ExpenseFilter from "./ExpenseFilter";
+import './ExpenseList.css';
 
 const ExpenseList = ({expenses}) => {
     // 선택된 연도로 재 렌더링 하기 위해 연도를 상태값으로 관리
@@ -13,20 +14,28 @@ const ExpenseList = ({expenses}) => {
         setFilteredYear(filteredYear);
     };
 
+    // 연도로 필터링한 배열
+    const filteredExpenses = expenses.filter(ex => ex.date.getFullYear().toString() === filteredYear);
+
+    // 지출 데이터가 있을 때 보여줄 태그
+    const expenseContent = filteredExpenses
+                           .map(({ title, price, date }) => (
+                             <ExpenseItem key={Math.random().toString()}
+                                          title={title}
+                                          price={price}
+                                          date={date}
+                                          />
+                           ));
+
+    // 지출 데이터가 없을 때 보여줄 태그
+    const noContent = <p>지출 항목이 없습니다.</p>;
+
     return (
         <div className="expenses">
 
             <ExpenseFilter onChangeFilter={onFilterChange}/>
 
-            {/*{ convertToComponentArray() }*/}
-            {expenses
-                .filter(ex => ex.date.getFullYear().toString() === filteredYear)
-                .map((ex) => (
-                    <ExpenseItem
-                        key={Math.random().toString()} // 보통 PK로 넣음
-                        title={ex.title}
-                        price={ex.price}
-                        date={ex.date}/>))}
+            {filteredExpenses.length > 0 ? expenseContent : noContent}
 
         </div>
     );
