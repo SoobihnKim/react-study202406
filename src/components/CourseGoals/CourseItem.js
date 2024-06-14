@@ -1,10 +1,16 @@
 import React from 'react';
 import './CourseItem.css';
 
-const CourseItem = ({ item }) => {
+const CourseItem = ({ item, onDelete }) => {
 
-  
-  return <li className="goal-item">{item.text}</li>;
+  const deleteHandler = e => {
+    console.log('삭제');
+    // 여기서 App.js에게 삭제 대상 id를 전달
+    // console.log(item.id);
+    onDelete(item.id);
+  };
+
+  return <li className="goal-item" onClick={deleteHandler}>{item.text}</li>;
 };
 
 export default CourseItem;
