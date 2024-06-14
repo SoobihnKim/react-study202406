@@ -3,14 +3,19 @@ import './ChartBar.css';
 
 import "./ChartBar.css";
 
-const ChartBar = ({label}) => {
+const ChartBar = ({label, currentMonthValue, totalvalue}) => {
 
     // 인라인 스타일 객체
     // const fillStyle = {
     //     height: '60%'
     // };
 
-    let barFillHeight = '70%';
+    let barFillHeight = '0%';
+
+    if(totalvalue > 0) {
+        const percentage = (currentMonthValue / totalvalue) * 100;
+        barFillHeight = percentage + '%';
+    };
 
     return (
         <div className="chart-bar">
