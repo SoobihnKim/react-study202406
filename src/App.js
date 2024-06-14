@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import CourseInput from './components/CourseGoals/CourseInput';
 import CourseList from './components/CourseGoals/CourseList';
@@ -21,11 +20,16 @@ const App = () => {
 
     const [goals, setGoals] = useState(DUMMY_DATA);
 
+    // CourseInput에게 전달할 함수
+    const addGoalHandler = (goalObject) => {
+        // 기존 goals 복사하여 새로운 goalObject 배열에 추가
+        setGoals([...goals, goalObject]);
+    };
 
   return (
     <div>
       <section id="goal-form">
-        <CourseInput />
+        <CourseInput onAdd={addGoalHandler} />
       </section>
       <section id="goals">
         <CourseList items={goals} />
