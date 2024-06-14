@@ -22,6 +22,7 @@ const ExpenseChart = () => {
      - 해당 연도의 모든 지출 데이터 배열에서 월별로 지출액을 합산하여
        chartDataPoints 배열에 value 값에 누적 저장
      */
+    
 
     return <Chart dataPoints={chartDataPoints} />;
 };
