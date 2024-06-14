@@ -14,7 +14,7 @@ const Chart = ({ dataPoints }) => {
   const totalValue = dataPoints
                       .map((dp) => dp.value)
                       .reduce((accum, curr) => accum + curr, 0);
-  console.log(totalValue);
+  console.log('tv: ',totalValue);
 
   return (
     <div className="chart">

@@ -39,7 +39,7 @@ const ExpenseForm = ({onAdd, onCalcel}) => {
         setUserInput({
             ...userInput,
             // title: userInput.title,
-            price: e.target.value ,
+            price: +e.target.value ,
             // date: userInput.date
         });
     };
