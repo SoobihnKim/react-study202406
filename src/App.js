@@ -10,7 +10,7 @@ const App = () => {
     // 회원들이 저장될 배열
     const [userList, setUserList] = useState([]);
 
-    // 기억을 해놨다가 증가시킬 수 있음(useState는 바로바로 반영되지않음)
+    // useRef 기억을 해놨다가 증가시킬 수 있음(useState는 바로바로 반영되지않음)
     const count = useRef(1);
     console.log('count: ', count);
 
