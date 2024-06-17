@@ -1,9 +1,15 @@
 import React from 'react';
-import './CourseInput.css';
+import styles from './CourseInput.module.css';
 import Button from '../UI/Button';
 import { useState } from 'react';
 
 const CourseInput = ({ onAdd }) => {
+
+  // console.log('s: ', styles);
+
+  const { invalid, "form-control" : formControl } = styles;
+
+
   // 목표 인풋에 입력한 값
   const [enteredText, setEnteredText] = useState('');
 
@@ -43,19 +49,22 @@ const CourseInput = ({ onAdd }) => {
 
   return (
       <form onSubmit={formSubmitHandler}>
-        <div className={`form-control ${isValid ? '' : 'invalid'}`}>
-          <label>나의 목표</label>
-          <input
-              type="text"
-              onChange={goalChangeHandler}
-              value={enteredText}
-              // style={{
-              //   backgroundColor: isValid ?  'transparent' : 'salmon',
-              //   borderColor: isValid ? 'black' : 'red',
-              // }}
-          />
-        </div>
-        <Button type="submit">목표 추가하기</Button>
+        {/*<div className={`form-control ${isValid ? '' : 'invalid'}`}>*/}
+        {/*왼쪽이 true면 오른쪽 꺼 사용 / 왼쪽이 false면 오른쪽 무시*/}
+          {/*<div className={`${formControl} ${!isValid && invalid}`}>*/}
+          <div className={`${formControl} ${!isValid ? invalid : ''}`}>
+            <label>나의 목표</label>
+            <input
+                type="text"
+                onChange={goalChangeHandler}
+                value={enteredText}
+                // style={{
+                //   backgroundColor: isValid ?  'transparent' : 'salmon',
+                //   borderColor: isValid ? 'black' : 'red',
+                // }}
+            />
+          </div>
+          <Button type="submit">목표 추가하기</Button>
       </form>
   );
 };
