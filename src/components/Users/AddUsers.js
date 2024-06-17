@@ -68,6 +68,7 @@ const AddUsers = ({onAddUser}) => {
             {/*{ error !== null ? <ErrorModal title={error.title} message={error.message}/> : '' }*/}
             {/*{ error ? <ErrorModal title={error.title} message={error.message}/> : '' }*/}
             { error && <ErrorModal title={error.title} message={error.message} onClose={modalCloseHandler}/> }
+
             <Card className={styles.input}>
                 <form onSubmit={userSubmitHandler}>
                     <label htmlFor="username">이름</label>
