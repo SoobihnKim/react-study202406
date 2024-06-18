@@ -4,9 +4,9 @@ import Card from '../UI/Card';
 import styles from './Login.module.css';
 import Button from '../UI/Button';
 
-const Login = ({ onLogin }) => {
+const Login = ({onLogin}) => {
 
-    console.log('렌더링 수행'); // 한 글자 입력할 때마다 수행됨
+    // console.log('렌더링 수행'); // 한 글자 입력할 때마다 수행됨
 
     // 사용자가 입력한 이메일을 상태 관리
     const [enteredEmail, setEnteredEmail] = useState('');
@@ -50,12 +50,25 @@ const Login = ({ onLogin }) => {
         onLogin(enteredEmail, enteredPassword);
     };
 
+    // 비동기
     useEffect(() => { // 보통 fetch 들어감
-        console.log('useEffect call in Login.js');
-        setFormIsValid(
-            enteredPassword.trim().length > 6 && enteredEmail.includes('@')
-        );
+
+        // 디바운싱 Debouncing 마지막 입력 후 한 번 실행
+        const timer = setTimeout(() => {
+            console.log('useEffect call in Login.js');
+            setFormIsValid(
+                enteredPassword.trim().length > 6 && enteredEmail.includes('@')
+            );
+        }, 1000);
+
+        // clean up 함수는 컴포넌트가 업데이트되거나 사라지기 전에 실행
+        return () => {
+            // console.log('clean up: ', enteredEmail); // 변경 전 값을 가지고있음
+            clearTimeout(timer);
+        };
     }, [enteredEmail, enteredPassword]); // 의존성 배열
+
+    // console.log('render: ', enteredEmail); // 변경된 값을 가지고있음
 
     return (
         <Card className={styles.login}>
@@ -91,7 +104,7 @@ const Login = ({ onLogin }) => {
                 <div className={styles.actions}>
                     <Button type="submit"
                             className={styles.btn}
-                            // 둘다 조건 맞으면 버튼 활성화됨
+                        // 둘다 조건 맞으면 버튼 활성화됨
                             disabled={!formIsValid}>
                         Login
                     </Button>
