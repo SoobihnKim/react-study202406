@@ -44,7 +44,7 @@ const App = () => {
 
     return (
         <>
-            <MainHeader />
+            <MainHeader onLogout={logoutHandler} />
             <main>
                 {isLoggedIn && <Home/>}
                 {!isLoggedIn && <Login onLogin={loginHandler}/>}
