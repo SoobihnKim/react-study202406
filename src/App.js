@@ -23,7 +23,7 @@ const App = () => {
     // side effect 처리를 위한 함수
     // useEffect는 기본적으로 컴포넌트 렌더링 시 단 한번만 호출
     useEffect(() => {
-        console.log('로그인 검사 수행!');
+        // console.log('로그인 검사 수행!');
         const storedLoginFlag = localStorage.getItem('login-flag');
         if (storedLoginFlag === '1') {
             setIsLoggedIn(true);
