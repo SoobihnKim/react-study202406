@@ -3,6 +3,7 @@ import './App.css';
 import MainHeader from "./components/SideEffect/MainHeader";
 import Home from "./components/SideEffect/Home";
 import Login from "./components/SideEffect/Login";
+import AuthContext from "./store/auth-context";
 
 
 const App = () => {
@@ -37,20 +38,23 @@ const App = () => {
         setIsLoggedIn(true);
     };
 
+    // 로그아웃 실행 함수
     const logoutHandler = () => {
         localStorage.removeItem('login-flag');
         setIsLoggedIn(false);
     } ;
 
     return (
-        <>
+        <AuthContext.Provider value={{
+            isLoggedIn: isLoggedIn
+        }}>
             <MainHeader onLogout={logoutHandler} />
             <main>
                 {isLoggedIn && <Home/>}
                 {!isLoggedIn && <Login onLogin={loginHandler}/>}
             </main>
 
-        </>
+        </AuthContext.Provider>
     );
 };
 

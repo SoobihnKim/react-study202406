@@ -11,7 +11,7 @@ import Button from '../UI/Button';
   컴포넌트 바깥쪽에 선언하는게 일반적입니다.
 
   param1 - state : 변경 전의 상태값
-  param2 - action : dispatch함수(상태변경 등의 행동)가
+  param2 - action : dispatch 함수(상태변경 등의 행동)가
                     전달한 상태변경객체,
                     지금 어떤 상태값을 변경하는가? - type
                     어떤 값으로 변경하는지?        - value
