@@ -33,11 +33,16 @@ const TodoTemplate = () => {
         setTodoList(prevTodoList => [...prevTodoList, newTodo]);
     };
 
+    // 삭제 끌어올리기(id로)
+    // filter 복사된 배열을 줌(따로 만들어짐)
+    const removeTodo = id => {
+        setTodoList(todoList.filter(todo => todo.id !== id));
+    };
 
     return (
         <div className='TodoTemplate'>
             <TodoHeader />
-            <TodoMain todos={todoList} />
+            <TodoMain todos={todoList} onRemove={removeTodo} />
             <TodoInput onAdd={addTodo} />
         </div>
     );

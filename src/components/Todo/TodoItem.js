@@ -3,9 +3,15 @@ import {MdDelete, MdDone} from "react-icons/md";
 
 import './scss/TodoItem.scss';
 
-const TodoItem = ({ item }) => {
+const TodoItem = ({ item, onRemove }) => {
 
-    const { title, done } = item;
+    const { id, title, done } = item;
+
+    // 삭제 클릭 이벤트
+    const removeHandler = e => {
+        onRemove(id);
+
+    };
 
     return (
         <li className='todo-list-item'>
@@ -13,8 +19,8 @@ const TodoItem = ({ item }) => {
                 {done && <MdDone/>}
             </div>
             <span className={`text ${done ? 'finish' : undefined}`}>{title}</span>
-            <div className='remove'>
-                <MdDelete/>
+            <div className='remove' onClick={removeHandler}>
+                <MdDelete />
             </div>
         </li>
     );
