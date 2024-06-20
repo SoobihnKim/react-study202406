@@ -12,11 +12,21 @@ const TodoHeader = () => {
         return `${year}년 ${month}월 ${day}일`;
     }
 
+    // 요일 가져오는 함수
+    const getDayName = () => {
+        const today = new Date();
+        const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+        return days[today.getDay()];
+    };
+
+    // 남은 할 일 수 계산
+
+
     return (
         <header>
             <h1>{getTodayDate()}</h1>
-            <div className='day'>수요일</div>
-            <div className='tasks-left'>할 일 3개 남음</div>
+            <div className='day'>{getDayName()}</div>
+            <div className='tasks-left'>할 일 {}개 남음</div>
         </header>
     );
 };
