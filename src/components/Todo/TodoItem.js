@@ -10,7 +10,6 @@ const TodoItem = ({ item, onRemove, onCheck }) => {
     // 삭제 클릭 이벤트
     const removeHandler = e => {
         onRemove(id);
-
     };
 
     // 상향식으로 id 올려줌
