@@ -9,7 +9,7 @@ const ResultModalComponent = ({onReset, targetTime, remainingTime}, ref) => {
     const formattedRemainingTime = (remainingTime / 1000).toFixed(2);
 
     // 점수
-    const score = Math.round((1 - remainingTime / (targetTime + 1000)) * 100);
+    const score = Math.round((1 - remainingTime / (targetTime * 1000)) * 100);
 
     return (
         <dialog ref={ref} className="result-modal">
