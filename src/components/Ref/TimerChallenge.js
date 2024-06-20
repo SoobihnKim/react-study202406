@@ -12,12 +12,15 @@ const TimerChallenge = ({title, targetTime}) => {
     // 타겟 시간이 종료되었는지 여부
     const [timerExpired, setTimerExpired] = useState(false);
 
-    // 타이머 시작 이벤트
-    // let timer;
-    const startHandler = e => {
+    // 자식 컴포넌트 ResultModal 에 있는 dialog 태그의 참조를 만듦
+    const dialog = useRef();
 
+    // 타이머 시작 이벤트
+    const startHandler = e => {
         timer.current = setTimeout(() => {
             setTimerExpired(true);
+            // modal open!
+            dialog.current.showModal();
         }, targetTime * 1000);
 
         setTimerStarted(true);
@@ -30,9 +33,7 @@ const TimerChallenge = ({title, targetTime}) => {
 
     return (
         <>
-        {/*    타이머 만료되면 모달 띄우기 */}
-        {/*{timerExpired && <ResultModal targetTime={targetTime} result="lost" />}*/}
-        { <ResultModal targetTime={targetTime} result="lost" />}
+            <ResultModal ref={dialog} targetTime={targetTime} result="lost"/>
             <section className="challenge">
                 <h2>{title}</h2>
                 {/*{timerExpired && <p>You lost!</p>}*/}
