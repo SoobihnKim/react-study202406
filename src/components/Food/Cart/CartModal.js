@@ -11,11 +11,12 @@ const ModalOverlay = ({children}) => {
     )
 };
 
-const CartModal = ({children}) => {
+const CartModal = ({children, onClose}) => {
 
     return (
         <>
-            <div className={styles.backdrop} />
+            {/*백드롭 클릭해도 모달 닫기*/}
+            <div className={styles.backdrop} onClick={onClose}/>
             <ModalOverlay>
                 {children}
             </ModalOverlay>
