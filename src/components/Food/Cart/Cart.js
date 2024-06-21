@@ -26,6 +26,7 @@ const Cart = ({ onClose }) => {
     } = styles;
 
     return (
+        // 백드롭 클릭해도 모달 닫히게 하기 위해 전달
         <CartModal onClose={onClose}>
             {/* 주문 내역 */}
             <ul className={cartItemStyle}>
