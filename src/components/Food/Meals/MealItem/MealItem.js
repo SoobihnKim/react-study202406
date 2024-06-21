@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './MealItem.module.scss';
 import MealItemForm from './MealItemForm';
+import CartContext from "../../../../store/cart-context";
 
 const MealItem = ({id, price, description, name}) => {
+
+    // Context에서 중앙관리되는 데이터들을 한번에 소비할 수 있는 Hook
+    // consumer 대신 useContext(CartContext) 씀
+    const { addItem } = useContext(CartContext);
+    // console.log('ctx in Mealitem: ', ctx);
 
     const { meal, description: desc, price: priceStyle } = styles;
 
@@ -18,7 +24,9 @@ const MealItem = ({id, price, description, name}) => {
             amount: +amount,
             price: price
         };
-        console.log('item: ', item);
+        // console.log('item: ', item);
+
+        addItem(item);
     };
 
     return (
