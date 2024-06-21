@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styles from './Input.module.scss';
 
-const Input = ({ label, inputAttr }) => {
+const Input = forwardRef(({ label, inputAttr }, ref) => {
     return (
         <div className={styles.input}>
-            <lavel htmlFor={inputAttr.id}>{label}</lavel>
-            <input {...inputAttr} />
-
+            <label htmlFor={inputAttr.id}>{label}</label>
+            <input ref={ref} {...inputAttr} />
         </div>
     );
-};
+});
 
 export default Input;
