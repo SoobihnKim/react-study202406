@@ -5,6 +5,7 @@ import CartContext from './cart-context';
 const defaultState = {
     items: [], // 장바구니 배열 상태값
     totalPrice: 0, // 주문 총액 상태값
+    totalAmount: 0, // 주문 수량 상태값
 };
 
 // reducer: 여러가지 복잡한 상태관리를 단순화시키며 중앙집중화한다.
@@ -25,9 +26,13 @@ const cartReducer = (state, action) => {
         // 총액 상태 업데이트
         const updatePrice = state.totalPrice + (action.value.price * action.value.amount);
 
+        // 수량 상태 업데이트
+        const updateAmount = state.totalAmount + action.value.amount;
+
         return {
             items: updateCartItems,
-            totalPrice: updatePrice
+            totalPrice: updatePrice,
+            totalAmount: updateAmount
         }; // 새로운 상태
     } else if (action.type === 'REMOVE') { // 장바구니 제거
 
@@ -60,6 +65,7 @@ const CartProvider = ({ children }) => {
     const cartContext = {
         cartItems: cartState.items, // 상태값
         totalPrice: cartState.totalPrice, // 총액 상태값
+        totalAmount: cartState.totalAmount, // 수량 상태값
         addItem: addItemHandler, // 상태를 업데이트하는 함수
         removeItem: id => {}, // 상태를 업데이트하는 함수
     };
