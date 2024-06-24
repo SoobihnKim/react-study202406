@@ -6,7 +6,7 @@ import CartContext from "../../../../store/cart-context";
 const MealItem = ({id, price, description, name}) => {
 
     // Context에서 중앙관리되는 데이터들을 한번에 소비할 수 있는 Hook
-    // consumer 대신 useContext(CartContext) 씀
+    // consumer 대신 useContext(CartContext) 씀 / 한번에 내려받기
     const { addItem } = useContext(CartContext);
     // console.log('ctx in Mealitem: ', ctx);
 
@@ -26,7 +26,7 @@ const MealItem = ({id, price, description, name}) => {
         };
         // console.log('item: ', item);
 
-        addItem(item);
+        addItem(item); // Context가 제공하는 함수(제일 위까지 끌어올리기)
     };
 
     return (
