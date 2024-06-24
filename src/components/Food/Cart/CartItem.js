@@ -6,10 +6,10 @@ import CartContext from "../../../store/cart-context";
 // 장바구니 하나의 정보
 const CartItem = ({ cart }) => {
 
-    const { addItem } = useContext(CartContext);
+    const { addItem, removeItem } = useContext(CartContext);
 
     // 장바구니에 담은 정보
-    const { name, price, amount } = cart;
+    const { id, name, price, amount } = cart;
 
     // css
     const {
@@ -33,6 +33,10 @@ const CartItem = ({ cart }) => {
         addItem(item);
     };
 
+    const cartRemoveHandler = e => {
+        removeItem(id);
+    };
+
     return (
         <li className={cartItem}>
             <div>
@@ -43,7 +47,7 @@ const CartItem = ({ cart }) => {
                 </div>
             </div>
             <div className={actions}>
-                <button>−</button>
+                <button onClick={cartRemoveHandler}>−</button>
                 <button onClick={cartAddHandler}>+</button>
             </div>
         </li>
