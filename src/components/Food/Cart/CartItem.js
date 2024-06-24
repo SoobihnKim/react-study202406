@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import styles from './CartItem.module.scss';
+import CartContext from "../../../store/cart-context";
 
 // 장바구니 하나의 정보
 const CartItem = ({ cart }) => {
+
+    const { addItem } = useContext(CartContext);
+
     // 장바구니에 담은 정보
     const { name, price, amount } = cart;
 
@@ -19,6 +23,16 @@ const CartItem = ({ cart }) => {
     // 한국 원화 포맷팅
     const formatPrice = new Intl.NumberFormat('ko-KR').format(price);
 
+    const cartAddHandler = e => {
+
+        // 장바구니에 보낼 객체
+        const item = {
+           ...cart,
+            amount: 1,
+        };
+        addItem(item);
+    };
+
     return (
         <li className={cartItem}>
             <div>
@@ -30,7 +44,7 @@ const CartItem = ({ cart }) => {
             </div>
             <div className={actions}>
                 <button>−</button>
-                <button>+</button>
+                <button onClick={cartAddHandler}>+</button>
             </div>
         </li>
     );
