@@ -5,9 +5,18 @@ import CartContext from "../../../store/cart-context";
 
 const HeaderCartButton = ({ onShow }) => {
 
-    const { totalAmount } = useContext(CartContext);
+    // const { totalAmount } = useContext(CartContext);
+    const { cartItems } = useContext(CartContext);
 
-    const {button, icon, badge} = styles;
+    const calcTotalAmount = () => {
+        let totalAmount = 0;
+        for (const item of cartItems) {
+            totalAmount += item.amount;
+        }
+        return totalAmount;
+    };
+
+    const { button, icon, badge } = styles;
 
     return (
         <button className={button} onClick={onShow}>
@@ -15,7 +24,8 @@ const HeaderCartButton = ({ onShow }) => {
         <CartIcon  />
       </span>
             <span>My Cart</span>
-            <span className={badge}>{totalAmount}</span>
+            {/*<span className={badge}>{totalAmount}</span>*/}
+            <span className={badge}>{calcTotalAmount()}</span>
         </button>
     );
 };
