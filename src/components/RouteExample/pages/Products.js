@@ -12,7 +12,7 @@ const Products = () => {
             </p>
         </>
     )
-        ;
+
 };
 
 export default Products;
