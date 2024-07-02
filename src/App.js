@@ -9,12 +9,14 @@ import ErrorPage from "./components/RouteExample/pages/ ErrorPage";
 const router = createBrowserRouter([
 
     {
+        // path 바껴도 다른데 안바꿔도 됨
         path: '/',
         element: <RootLayout />,
         errorElement: <ErrorPage />,
         children: [
-            { path: '/', element: <Home /> },
-            { path: '/products', element: <Products /> }
+            { path: '', element: <Home /> },
+            { path: 'products', element: <Products /> }
+        //     path: 'products' 상대경로로 작성하기( / 빼기)
         ]
     },
 
