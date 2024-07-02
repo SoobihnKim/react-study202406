@@ -4,6 +4,7 @@ import Products from './components/RouteExample/pages/Products';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './components/RouteExample/layout/RootLayout';
 import ErrorPage from "./components/RouteExample/pages/ ErrorPage";
+import ProductDetail from "./components/RouteExample/pages/ProductDetail";
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -14,9 +15,12 @@ const router = createBrowserRouter([
         element: <RootLayout />,
         errorElement: <ErrorPage />,
         children: [
-            { path: '', element: <Home /> },
-            { path: 'products', element: <Products /> }
+            // { path: '', element: <Home /> }, 바로 보여지는 페이지는 index: true 이렇게 설정
+            { index: true, element: <Home /> },
         //     path: 'products' 상대경로로 작성하기( / 빼기)
+            { path: 'products', element: <Products /> },
+        //     동적 라우팅(prodId 서버로 보내기)
+            { path: 'products/:prodId/page/:pageNo', element: <ProductDetail /> }
         ]
     },
 
