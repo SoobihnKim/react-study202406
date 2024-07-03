@@ -6,8 +6,8 @@ const EventLayout = () => {
     return (
         <>
             <EventNavigation />
-            <Outlet />
         {/*    자식들 불러오기 */}
+            <Outlet />
         </>
     );
 };
