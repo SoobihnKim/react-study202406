@@ -34,6 +34,7 @@ const router = createBrowserRouter([
                             const jsonData = await response.json();
 
                             // loader가 리턴한 데이터는 loader를 선언한 컴포넌트와 그 하위 컴포넌트에서 언제든 불러서 사용 가능
+                            console.log(jsonData);
                             return jsonData;
                         }
                     },

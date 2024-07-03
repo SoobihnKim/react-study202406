@@ -18,12 +18,13 @@ const EventList = ({ eventList }) => {
                 {
                     eventList.map(ev => (
                         <li key={ev.id} className={item}>
-                            {/* 링크에는 무조건 문자가 들어가야함 숫자는 안됨 그래서 toString() */}
-                            <Link to={ev.id.toString()}>
-                                <img src={ev.image} alt={ev.title} />
+                            {/* 링크에는 무조건 문자가 들어가야함 숫자는 안됨 그래서 toString()
+                             백에서 수정해서 옴*/}
+                            <Link to={ev.id}>
+                                <img src={ev['img-url']} alt={ev.title} />
                                 <div className={content}>
                                     <h2>{ev.title}</h2>
-                                    <time>{ev.date}</time>
+                                    <time>{ev.startDate}</time>
                                 </div>
                             </Link>
                         </li>
