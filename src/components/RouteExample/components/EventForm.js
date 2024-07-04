@@ -3,7 +3,14 @@ import React from "react";
 import styles from './EventForm.module.scss';
 import {useParams, useNavigate} from "react-router-dom";
 
-const EventForm = () => {
+const EventForm = ({ method, event={} }) => {
+
+    const {
+        title,
+        desc: description,
+        'img-url': image,
+        'start-date': date
+    } = event;
 
     // const { eventId : id} = useParams();
     const navigate = useNavigate();
@@ -19,25 +26,25 @@ const EventForm = () => {
         <form className={styles.form}>
             <p>
                 <label htmlFor="title">Title</label>
-                <input id="title" type="text" name="title" required />
+                <input id="title" type="text" name="title" required defaultValue={event ? title : ''} />
             </p>
             <p>
                 <label htmlFor="image">Image</label>
-                <input id="image" type="url" name="image" required />
+                <input id="image" type="url" name="image" required defaultValue={event ? image : ''}/>
             </p>
             <p>
                 <label htmlFor="date">Date</label>
-                <input id="date" type="date" name="date" required />
+                <input id="date" type="date" name="date" required defaultValue={event ? date : ''}/>
             </p>
             <p>
                 <label htmlFor="description">Description</label>
-                <textarea id="description" name="description" rows="5" required />
+                <textarea id="description" name="description" rows="5" required defaultValue={event ? description : ''}/>
             </p>
             <div className={styles.actions}>
                 <button type="button" onClick={cancelHandler} >
                     Cancel
                 </button>
-                <button>Save</button>
+                <button>{method === 'post' ? 'Save' : 'Modify'}</button>
             </div>
         </form>
     );
