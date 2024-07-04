@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useLoaderData} from "react-router-dom";
+import {Link, useLoaderData, json} from "react-router-dom";
 import EventList from "../components/EventList";
 import EventNavigation from "../layout/EventNavigation";
 
@@ -22,7 +22,7 @@ const Events = () => {
 
 export default Events;
 
-// loader를 app.js로부터 아웃소싱
+// loader를 app.js로부터 아웃소싱 / 이 페이지 렌더링 되기 직전 실행됨
 export const loader = async () => {
 
     console.log('loader call'); // loader는 항상 먼저 작동됨
@@ -39,10 +39,10 @@ export const loader = async () => {
         // 백에서 에러메시지 가져옴
         const errorText = await response.text();
 
-        throw new Response(
-            JSON.stringify({message: errorText}),
+        throw json(
+            {message: errorText},
             {
-                status: response.status
+                status: response.status //fetch에서 서버에서 받아온 상태코드
             }
         ); // return 말고, 코드 흐름을 끊어줘야함
         // return response; // error message
