@@ -1,20 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLoaderData, useParams} from "react-router-dom";
-
+import EventItem from "../components/EventItem";
 
 const EventDetail = () => {
 
     const {eventId: id} = useParams();
+    const [ev, setEv] = useState({});
 
-    const data = useLoaderData();
-    // console.log('loader data: ', data);
-    // 이벤트 안에서만 쓸 수 있는데 형제관계(EventDetail)에서는 사용할 수 없음
+    useEffect(() => {
+
+        // (function foo() {}) (); // 함수 즉시 실행
+        (async () => {
+
+            const response = await fetch(`http://localhost:8282/events/${id}`);
+
+            const json = await response.json();
+            console.log('json: ', json);
+            setEv(json);
+        }) (); // 함수 즉시 실행
+
+    }, []); // 한번만 실행해야하니 배열은 비워두기
 
     return (
-        <>
-            <h1>EventDetail Page</h1>
-            <p>Event ID: {id}</p>
-        </>
+        <EventItem event={ev} />
     );
 };
 
