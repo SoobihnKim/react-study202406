@@ -1,8 +1,9 @@
 import React from 'react';
+import EventForm from "../components/EventForm";
 
 const EditPage = () => {
     return (
-        <h1>Edit Page!</h1>
+        <EventForm />
     );
 };
 
