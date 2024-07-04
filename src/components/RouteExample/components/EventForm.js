@@ -25,16 +25,15 @@ const EventForm = ({ method, event={} }) => {
 
         const day = dayPart.replace('일', '');
 
-        // console.log('date: ', { yearPart, monthPart, day });
+        console.log('date: ', { yearPart, monthPart, day });
 
         return `${yearPart}-${monthPart}-${day}`;
     };
 
     let formatDate;
-    if (event.date) {
+    if (event['start-date']) {
         formatDate = convertDateFormat(date);
     }
-
 
 
     // const { eventId : id} = useParams();
