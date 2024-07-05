@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from './EventForm.module.scss';
-import {useParams, useNavigate, Form} from "react-router-dom";
+import {useParams, useNavigate, Form, redirect} from "react-router-dom";
 
 const EventForm = ({method, event = {}}) => {
 
@@ -25,7 +25,7 @@ const EventForm = ({method, event = {}}) => {
 
         const day = dayPart.replace('일', '');
 
-        console.log('date: ', {yearPart, monthPart, day});
+        // console.log('date: ', {yearPart, monthPart, day});
 
         return `${yearPart}-${monthPart}-${day}`;
     };
@@ -85,7 +85,7 @@ const EventForm = ({method, event = {}}) => {
     // 4. method 옵션을 설정한다.
     return (
         <Form
-            method='post'
+            method={method}
             className={styles.form}
             // onSubmit={submitHandler}
             noValidate>
@@ -117,3 +117,45 @@ const EventForm = ({method, event = {}}) => {
 };
 
 export default EventForm;
+
+// 서버에 갱신 요청을 보내는 트리거 함수(loader처럼 자동이 아님)
+// App.js에서 router에 설정
+export const action = async ({request, params}) => {
+
+    // action 함수를 트리거하는 방법
+    // 1. form이 있는 EventForm으로 이동
+    console.log('action 함수 call!');
+    // console.log('abc: ', abc);
+
+    console.log('request: ', request);
+
+    const formData = await request.formData();
+    console.log(formData);
+
+    // 서버에 보낼 데이터
+    const payload = {
+        title: formData.get('title'),
+        desc: formData.get('description'),
+        imageUrl: formData.get('image'),
+        beginDate: formData.get('date')
+    };
+    console.log(payload);
+
+    let url = `http://localhost:8282/events`;
+    if (request.method === 'PATCH') {
+        url += `/${params.eventId}`;
+    }
+
+    console.log('info: ', { url, method: request.method });
+
+    const response = await fetch(url, {
+        method: request.method,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    });
+
+    return redirect('/events');
+
+};
