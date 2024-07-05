@@ -26,14 +26,24 @@ const Events = () => {
     // 현재 페이지 번호 상태
     const [currentPage, setCurrentPage] = useState(1);
 
+    // 더이상 가져올 데이터가 있는지 확인
+    const [isFinish, setIsFinish] = useState(false);
+
     // 서버로 목록 조회 요청 보내기
     const loadEvents = async () => {
+
+        if (isFinish) {
+            console.log('loading finished!');
+            return;
+        }
 
         console.log('start loading...');
         setLoading(true);
 
         const response = await fetch(`http://localhost:8282/events/page/${currentPage}?sort=date`);
-        const loadedEvents = await response.json();
+        const { events: loadedEvents, totalCount } = await response.json();
+
+        // console.log('loaded: ', loadedEvents);
 
         const updatedEvents = [...events, ...loadedEvents ]; // 기존꺼 + 추가로 불러옴
         setEvents(updatedEvents);
@@ -41,6 +51,10 @@ const Events = () => {
         // 로딩이 끝나면 페이지번호를 1 늘려 놓는다.
         setCurrentPage(prevPage => prevPage + 1);
         console.log('end loading!');
+
+        // 로딩이 끝나면 더이상 가져올게 있는지 체크
+        setIsFinish(totalCount === updatedEvents.length);
+
     };
 
     // 초기 이벤트 1페이지 목록 가져오기
