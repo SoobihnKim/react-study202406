@@ -27,6 +27,8 @@ const EventItem = ({event}) => {
 
         console.log('id: ', id);
 
+        // await 쓰려면 클릭 이벤트에 async 쓸 수 없어서 밖에서 함수 만들어서 불러오거나
+        // 이렇게 즉시실행 함수로 써야함
         (async () => {
             await fetch(`http://localhost:8282/events/${id}`, {
                 method: 'DELETE'
