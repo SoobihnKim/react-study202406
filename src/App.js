@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './components/RouteExample/layout/RootLayout';
 import ErrorPage from "./components/RouteExample/pages/ ErrorPage";
 import Events, { loader as eventListLoader } from "./components/RouteExample/pages/Events";
-import EventDetail, { loader as eventDetailLoader } from "./components/RouteExample/pages/EventDetail";
+import EventDetail, { loader as eventDetailLoader, action as deleteAction } from "./components/RouteExample/pages/EventDetail";
 import EventLayout from "./components/RouteExample/layout/EventLayout";
 import NewEvent, { action as saveAction } from "./components/RouteExample/pages/NewEvent";
 import EditPage from "./components/RouteExample/pages/EditPage";
@@ -37,7 +37,11 @@ const router = createBrowserRouter([
                         // EventDetail에서 loader를 사용하지 못하고있음
                         id: 'event-detail', // loader에게 ID 부여
                         children: [
-                            { index: true, element: <EventDetail /> },
+                            {
+                                index: true,
+                                element: <EventDetail />,
+                                action: deleteAction
+                            },
                             { path: 'edit', element: <EditPage /> },
                         ]
                     },
