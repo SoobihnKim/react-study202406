@@ -70,9 +70,9 @@ const Events = () => {
     };
 
     // 초기 이벤트 1페이지 목록 가져오기
-    useEffect(() => {
-        loadEvents();
-    }, []);
+    // useEffect(() => {
+    //     loadEvents();
+    // }, []);
 
     // 스크롤 핸들러
     // const scrollHandler = throttle(() => {
