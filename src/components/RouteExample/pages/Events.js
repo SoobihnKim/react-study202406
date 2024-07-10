@@ -125,7 +125,6 @@ const Events = () => {
                 observer.disconnect();
             }
         };
-
     }, [loading, currentPage]); // 상태가 변하면 다시 관찰 시작할 수 있도록
 
     return (
